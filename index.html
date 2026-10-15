@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa Recife - lugares pra comer, ver e viver</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Lexend:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="head">
+  <div class="stripe" aria-hidden="true"></div>
+  <div class="head-row">
+    <h1>Mapa Recife</h1>
+    <p>Lugares pra comer, ver e viver a cidade.</p>
+  </div>
+</header>
+
+<main class="app">
+  <aside class="side">
+    <div class="filters" role="group" aria-label="Filtrar lugares">
+      <button type="button" class="chip" data-cat="todos">Todos</button>
+      <button type="button" class="chip" data-cat="comer">Comer</button>
+      <button type="button" class="chip" data-cat="ver">Ver</button>
+      <button type="button" class="chip" data-cat="cultura">Cultura</button>
+      <button type="button" class="chip" id="favToggle">Favoritos (<span id="favCount">0</span>)</button>
+    </div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <ul class="list" id="list"></ul>
+  </aside>
+
+  <section class="mapwrap">
+    <div id="map" aria-label="Mapa do Recife com os lugares"></div>
+    <article class="detail" id="detail" hidden></article>
+  </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="js/places.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+:root {
+  --ink: #111111;
+  --yellow: #FFD23F;
+  --red: #E4262B;
+  --blue: #1B4FD8;
+  --green: #00A06A;
+  --orange: #FF7A1A;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Lexend', sans-serif;
+  font-size: 15px;
+  color: var(--ink);
+  background: #fff;
+}
+
+/* ---------- Cabeçalho com a faixa da sombrinha de frevo ---------- */
+
+.head { flex-shrink: 0; border-bottom: 3px solid var(--ink); }
+
+.stripe {
+  height: 12px;
+  background: repeating-linear-gradient(90deg,
+    var(--red) 0 40px, var(--yellow) 40px 80px, var(--green) 80px 120px,
+    var(--blue) 120px 160px, var(--orange) 160px 200px);
+  border-bottom: 3px solid var(--ink);
+}
+
+.head-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; padding: 10px 20px; }
+.head h1 { margin: 0; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 28px; line-height: 1.1; }
+.head p { margin: 0; }
+
+/* ---------- Layout ---------- */
+
+.app { flex: 1; min-height: 0; display: grid; grid-template-columns: 400px 1fr; }
+
+.side {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--yellow);
+  border-right: 3px solid var(--ink);
+}
+
+.mapwrap { position: relative; min-height: 0; }
+#map { position: absolute; inset: 0; }
+
+/* ---------- Filtros ---------- */
+
+.filters { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 16px 8px; }
+
+.chip {
+  font: inherit;
+  font-weight: 500;
+  min-height: 40px;
+  padding: 0 14px;
+  color: var(--ink);
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.chip[aria-pressed="true"] { color: #fff; background: var(--ink); }
+.chip:focus-visible, .card-main:focus-visible, .star:focus-visible,
+.btn:focus-visible, .close:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+.count { margin: 0; padding: 4px 16px 10px; font-weight: 500; }
+
+/* ---------- Lista de lugares ---------- */
+
+.list { flex: 1; overflow-y: auto; margin: 0; padding: 4px 16px 20px; list-style: none; }
+
+.card {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 14px;
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-left-width: 12px;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.card.cat-comer { border-left-color: var(--red); }
+.card.cat-ver { border-left-color: var(--blue); }
+.card.cat-cultura { border-left-color: var(--green); }
+.card.selected { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
+
+.card-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 64px;
+  padding: 10px 12px;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.card-name { font-weight: 600; font-size: 17px; line-height: 1.25; }
+.card-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 14px; margin: 0; }
+
+.tag { padding: 2px 10px; font-size: 13px; font-weight: 600; border: 2px solid var(--ink); border-radius: 999px; }
+.tag-comer { background: var(--red); color: #fff; }
+.tag-ver { background: var(--blue); color: #fff; }
+.tag-cultura { background: var(--green); color: var(--ink); }
+
+.star {
+  width: 52px;
+  font-size: 24px;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  border-left: 2px solid var(--ink);
+  cursor: pointer;
+}
+.star.on { background: var(--orange); }
+
+.empty { padding: 16px; font-weight: 500; background: #fff; border: 3px dashed var(--ink); border-radius: 12px; }
+
+/* ---------- Pinos do mapa ---------- */
+
+.pin {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 3px;
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+.pin-comer { background: var(--red); }
+.pin-ver { background: var(--blue); }
+.pin-cultura { background: var(--green); }
+.pin.on { transform: scale(1.35); box-shadow: 0 0 0 4px var(--yellow), 0 0 0 7px var(--ink); }
+
+/* ---------- Cartão de detalhes ---------- */
+
+.detail {
+  position: absolute;
+  left: 16px;
+  bottom: 28px;
+  z-index: 1100;
+  width: min(440px, calc(100% - 32px));
+  padding: 16px;
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 14px;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.detail[hidden] { display: none; }
+.detail-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
+.detail h2 { margin: 0; font-family: 'Bungee', sans-serif; font-weight: 400; font-size: 22px; line-height: 1.15; }
+.detail p { margin: 10px 0 0; line-height: 1.5; max-width: 60ch; }
+.detail .card-meta { margin-top: 0; }
+
+.close {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  line-height: 1;
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.close:hover { background: var(--yellow); }
+
+.detail-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.btn[aria-pressed="true"] { background: var(--orange); }
+.btn:hover { background: var(--yellow); }
+
+/* ---------- Celular: mapa em cima, lista embaixo ---------- */
+
+@media (max-width: 860px) {
+  .head h1 { font-size: 22px; }
+  .head p { display: none; }
+  .app { display: flex; flex-direction: column; }
+  .mapwrap { order: -1; flex: 0 0 46%; }
+  .side { flex: 1; border-right: 0; border-top: 3px solid var(--ink); }
+  .detail { left: 8px; bottom: 24px; width: calc(100% - 16px); padding: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
