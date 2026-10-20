@@ -2,8 +2,6 @@
 
 Um mapa pra quem quer conhecer o Recife sem se perder no meio de tantas opções.
 
-**Quer ver funcionando?** https://wendellfeliix.github.io/mapa-recife/ (o link só abre depois que o GitHub Pages for ativado neste repositório)
-
 ## Por que eu fiz isso
 
 Eu tinha uma ideia na cabeça e quis ver até onde conseguia levá-la. Tentei explorar ela da melhor forma que pude, e o resultado é este mapa: a ideia transformada em código.
